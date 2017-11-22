@@ -6,30 +6,35 @@ describe("Thermostat", function(){
 
   describe("#temperature", function(){
     it("haves a temperature of 20 degrees", function(){
-      expect(thermostat.temperature).toEqual(20);
+      expect(thermostat.getCurrentTemperature()).toEqual(20);
     });
   });
 
   describe("#up", function(){
     it("increases the temperature by 1", function(){
       thermostat.up();
-      expect(thermostat.temperature).toEqual(21);
+      expect(thermostat.getCurrentTemperature()).toEqual(21);
     });
   });
 
   describe("#down", function(){
     it("decrease the temperature by 1", function(){
       thermostat.down();
-      expect(thermostat.temperature).toEqual(19);
+      expect(thermostat.getCurrentTemperature()).toEqual(19);
     });
   });
 
-  describe("#minimum", function(){
+  describe("#isMinimumTemperature", function(){
+    it("returns true if minimum temperature is reached", function(){
+      for (var i = 0; i < 11; i++){
+        thermostat.down()
+      }
+      expect(thermostat.isMinimumTemperature()).toEqual(true)
+    })
     it("wont go below 10", function(){
-
-      for (var i = 0; i<11; i++){
+      for (var i = 0; i<15; i++){
         thermostat.down();}
-        expect(thermostat.temperature).toEqual(10);
+        expect(thermostat.getCurrentTemperature()).toEqual(10);
     });
   });
 
@@ -37,26 +42,7 @@ describe("Thermostat", function(){
     it("wont go over 25", function(){
       for (var i = 0; i<6; i++){
         thermostat.up();}
-        expect(thermostat.temperature).toEqual(25);
-    });
-  });
-
-  describe("#powersave on", function(){
-    it("won't got over 25 with powersave on", function(){
-      thermostat.powerSaveOff();
-      thermostat.powerSaveOn();
-      for (var i = 0; i<6; i++){
-        thermostat.up();}
-        expect(thermostat.temperature).toEqual(25)
-    });
-  });
-
-  describe("#powersave off", function(){
-    it("won't got over 25 with powersave on", function(){
-      thermostat.powerSaveOff();
-      for (var i = 0; i<13; i++){
-        thermostat.up();}
-        expect(thermostat.temperature).toEqual(32)
+        expect(thermostat.getCurrentTemperature()).toEqual(25);
     });
   });
 
@@ -64,7 +50,7 @@ describe("Thermostat", function(){
     it("resets temperature to 20", function(){
       thermostat.up();
       thermostat.reset();
-      expect(thermostat.temperature).toEqual(20);
+      expect(thermostat.getCurrentTemperature()).toEqual(20);
     });
   });
 
@@ -86,4 +72,52 @@ describe("Thermostat", function(){
       expect(thermostat.energyUsage()).toEqual('high-usage');
     });
   });
+
+  describe("#isPowerSavingModeOn", function(){
+    it("returns true when powersaving mode is on", function(){
+      expect(thermostat.isPowerSavingModeOn()).toEqual(true)
+    });
+  });
+
+  describe("#turnPowerSavingModeOff", function(){
+    it("changes power saving mode to be false", function(){
+      thermostat.turnPowerSavingModeOff()
+      expect(thermostat.isPowerSavingModeOn()).toEqual(false)
+    });
+  });
+  
+  describe("#turnPowerSavingModeOn", function(){
+    it("changes power saving mode to be false", function(){
+      thermostat.turnPowerSavingModeOff()
+      thermostat.turnPowerSavingModeOn()
+      expect(thermostat.isPowerSavingModeOn()).toEqual(true)
+    });
+  });
+
+  describe("#isMaximumTemperature", function(){
+    it("returns true if power save on and at 25", function(){
+      for (var i = 0; i < 5; i++){
+        thermostat.up();
+      }
+      expect(thermostat.isMaximumTemperature()).toEqual(true)
+    });
+
+    it("returns false if power save on and at below 25", function(){
+      expect(thermostat.isMaximumTemperature()).toEqual(false)
+    });
+
+    it("returns true if power save on and at 32", function(){
+      thermostat.turnPowerSavingModeOff()
+      for (var i = 0; i < 12; i++){
+        thermostat.up();
+      }
+      expect(thermostat.isMaximumTemperature()).toEqual(true)
+    });
+
+    it("returns false if power save on and at below 32", function(){
+      thermostat.turnPowerSavingModeOff()
+      expect(thermostat.isMaximumTemperature()).toEqual(false)
+    });
+  });
+
 });
