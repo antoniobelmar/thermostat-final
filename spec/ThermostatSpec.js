@@ -32,4 +32,31 @@ describe("Thermostat", function(){
         expect(thermostat.temperature).toEqual(10);
     });
   });
+
+  describe("#maximum", function(){
+    it("wont go over 25", function(){
+      for (var i = 0; i<6; i++){
+        thermostat.up();}
+        expect(thermostat.temperature).toEqual(25);
+    });
+  });
+
+  describe("#powersave on", function(){
+    it("won't got over 25 with powersave on", function(){
+      thermostat.powerSaveOff();
+      thermostat.powerSaveOn();
+      for (var i = 0; i<6; i++){
+        thermostat.up();}
+        expect(thermostat.temperature).toEqual(25)
+    });
+  });
+
+  describe("#powersave off", function(){
+    it("won't got over 25 with powersave on", function(){
+      thermostat.powerSaveOff();
+      for (var i = 0; i<13; i++){
+        thermostat.up();}
+        expect(thermostat.temperature).toEqual(32)
+    });
+  });
 });
