@@ -59,4 +59,31 @@ describe("Thermostat", function(){
         expect(thermostat.temperature).toEqual(32)
     });
   });
+
+  describe("#reset", function(){
+    it("resets temperature to 20", function(){
+      thermostat.up();
+      thermostat.reset();
+      expect(thermostat.temperature).toEqual(20);
+    });
+  });
+
+  describe("#energyUsage", function(){
+
+    it("returns low usage when temperature is below 18", function(){
+      for (var i = 0; i < 3; i++){
+        thermostat.down();
+      }
+      expect(thermostat.energyUsage()).toEqual('low-usage');
+    });
+    it("returns medium usage when temperature is below 25", function(){
+      expect(thermostat.energyUsage()).toEqual('medium-usage');
+    });
+    it("returns high usage when temperature is above 25", function(){
+      for (var i = 0; i < 5; i++){
+        thermostat.up();
+      }
+      expect(thermostat.energyUsage()).toEqual('high-usage');
+    });
+  });
 });

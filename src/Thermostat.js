@@ -12,7 +12,6 @@ Thermostat.prototype.up = function(){
   if (this.temperature < this.maximum) {
     this.temperature += 1
   }
-
 }
 
 Thermostat.prototype.down = function(){
@@ -27,4 +26,18 @@ Thermostat.prototype.powerSaveOff = function(){
 
 Thermostat.prototype.powerSaveOn = function(){
   this.maximum = PSON_MAX
+}
+
+Thermostat.prototype.reset = function(){
+  this.temperature = DEFAULT_TEMP
+}
+
+Thermostat.prototype.energyUsage = function(){
+  if (this.temperature < 18) {
+    return 'low-usage'
+  } else if (this.temperature < 25) {
+    return 'medium-usage'
+  } else {
+    return 'high-usage'
+  }
 }
