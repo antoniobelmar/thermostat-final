@@ -6,9 +6,13 @@ function Thermostat(){
   this.powerSavingMode = true
 }
 
+// TEMPERATURE GETTER
+
 Thermostat.prototype.getCurrentTemperature = function(){
   return this.temperature
 }
+
+// RETURN BOOLEAN
 
 Thermostat.prototype.isMinimumTemperature = function(){
   return this.temperature === this.MINIMUM
@@ -25,6 +29,8 @@ Thermostat.prototype.isMaximumTemperature = function(){
   return this.temperature === this.MAX_PSOFF
 }
 
+// CHANGE TEMPERATURE
+
 Thermostat.prototype.up = function(){
   if (this.isMaximumTemperature()) {
     return;
@@ -39,6 +45,12 @@ Thermostat.prototype.down = function(){
   this.temperature -= 1
 }
 
+Thermostat.prototype.reset = function(){
+  this.temperature = 20
+}
+
+// POWER SAVING SWITCHES
+
 Thermostat.prototype.turnPowerSavingModeOff = function(){
   this.powerSavingMode = false
 }
@@ -47,9 +59,7 @@ Thermostat.prototype.turnPowerSavingModeOn = function(){
   this.powerSavingMode = true
 }
 
-Thermostat.prototype.reset = function(){
-  this.temperature = 20
-}
+// ENERGY USAGE
 
 Thermostat.prototype.energyUsage = function(){
   if (this.getCurrentTemperature() < 18) {

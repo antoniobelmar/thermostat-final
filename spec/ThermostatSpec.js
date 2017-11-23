@@ -85,7 +85,7 @@ describe("Thermostat", function(){
       expect(thermostat.isPowerSavingModeOn()).toEqual(false)
     });
   });
-  
+
   describe("#turnPowerSavingModeOn", function(){
     it("changes power saving mode to be false", function(){
       thermostat.turnPowerSavingModeOff()
