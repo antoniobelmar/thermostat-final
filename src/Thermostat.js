@@ -81,11 +81,15 @@ $(document).ready(function() {
   function turnOnPS(){
     $("#power_save_status").html("Power save mode on");
     $("#power_save_status").css({"color": "green"});
+    $("#on").css({"background-color": "grey", "color": "grey"})
+    $("#off").removeAttr("style");
     };
 
   function turnOffPS(){
     $("#power_save_status").html("Power save mode off");
     $("#power_save_status").css({"color": "red"});
+    $("#off").css({"background-color": "grey", "color": "grey"})
+    $("#on").removeAttr("style");
     };
 
   updateTemp();
