@@ -1,0 +1,57 @@
+h1 {
+  text-align: center;
+  color: grey;
+  font-size: 20px;
+  font-family: monospace;
+}
+h2 {
+  text-align: center;
+  color: red;
+  font-size: 18px;
+  font-family: monospace;
+}
+.up_button {
+  background-color: red;
+  padidng: 15px;
+  width: 100px;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+}
+.down_button {
+  background-color: blue;
+  padidng: 15px;
+  width: 100px;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+}
+.on_button {
+  background-color: green;
+  padidng: 15px;
+  width: 100px;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+}
+.off_button {
+  background-color: orange;
+  padidng: 15px;
+  width: 100px;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+}
+.reset_button {
+  background-color: grey;
+  padidng: 15px;
+  width: 100px;
+  color: white;
+  font-size: 16px;
+  border-radius: 10px;
+}
+.button_div {
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
