@@ -1,3 +1,7 @@
+body {
+  background-color: #f2e1a4;
+}
+
 h1 {
   text-align: center;
   color: grey;
@@ -65,4 +69,16 @@ h3 {
   text-align: center;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.low-usage {
+  color: green;
+}
+
+.medium-usage {
+  color: black;
+}
+
+.high-usage {
+  color: red;
 }
