@@ -15,7 +15,7 @@ Thermostat.prototype.getCurrentTemperature = function(){
 // RETURN BOOLEAN
 
 Thermostat.prototype.isMinimumTemperature = function(){
-  return this.temperature === this.MINIMUM
+  return this.temperature <= this.MINIMUM
 }
 
 Thermostat.prototype.isPowerSavingModeOn = function(){
@@ -24,9 +24,9 @@ Thermostat.prototype.isPowerSavingModeOn = function(){
 
 Thermostat.prototype.isMaximumTemperature = function(){
   if (this.isPowerSavingModeOn()) {
-    return this.temperature === this.MAX_PSON
+    return this.temperature >= this.MAX_PSON
   }
-  return this.temperature === this.MAX_PSOFF
+  return this.temperature >= this.MAX_PSOFF
 }
 
 // CHANGE TEMPERATURE
