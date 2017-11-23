@@ -24,7 +24,8 @@ $(document).ready(function() {
     var city = "London"
     $.get("http://api.openweathermap.org/data/2.5/weather?q="+city+"&units=metric&appid=4429cded58ef850105b16e73c1288175", function(weather) {
       $("#weather1").html(weather.name + ": " + weather.main.temp + "°C");
-      $("#weather2").html(weather.weather[0].description);
+      $("#weather2").html(weather.weather[0].description.charAt(0).toUpperCase()+weather.weather[0].description.slice(1));
+      $("#icon").attr("src", "http://openweathermap.org/img/w/"+weather.weather[0].icon+".png");
     })
   };
 
@@ -66,9 +67,8 @@ $(document).ready(function() {
     var city = $("#city").val();
     $.get("http://api.openweathermap.org/data/2.5/weather?q="+city+"&units=metric&appid=4429cded58ef850105b16e73c1288175", function(weather) {
       $("#weather1").html(weather.name + ": " + weather.main.temp + "°C");
-      $("#weather2").html(weather.weather[0].description);
-      // var icon = $("#icon");
-      // icon.attr("src", "http://openweathermap.org/img/w/01d.png");
+      $("#weather2").html(weather.weather[0].description.charAt(0).toUpperCase()+weather.weather[0].description.slice(1));
+      $("#icon").attr("src", "http://openweathermap.org/img/w/"+weather.weather[0].icon+".png");
     })
   });
 });
