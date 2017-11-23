@@ -1,97 +1,26 @@
+<!DOCTYPE html>
 <html>
-<head>
-  <script src="src/Thermostat.js"></script>
-  <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
-  <style>
-  h1 {
-    font-family: 'Righteous';
-    font-size: 40px;
-    text-align: center;
-  }
-  h2 {
-    font-family: 'Righteous';
-    font-size: 20px;
-    text-align: left;
-  }
-  .buttonUP {
-    background-color: red;
-    border: none;
-    padding: 15px;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    width: 100px;
-    font-size: 16px;
-  }
-  .buttonDOWN {
-    background-color: blue;
-    border: none;
-    padding: 15px;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    width: 100px;
-    font-size: 16px;
-  }
-
-  .button_pwr_save_on {
-    background-color: green;
-    border: none;
-    padding: 15px;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    width: 100px;
-    font-size: 16px;
-  }
-
-  .button_pwr_save_off {
-    background-color: orange;
-    border: none;
-    padding: 15px;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    width: 100px;
-    font-size: 16px;
-  }
-
-  .button_reset {
-    background-color: grey;
-    border: none;
-    padding: 15px;
-    text-align: center;
-    text-decoration: none;
-    color: white;
-    width: 100px;
-    font-size: 16px;
-  }
-
-  .button_div {
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-
-  .temp {
-    font-size: 150px;
-  }
-  </style>
-
-</head>
-<body>
-  <h1> Thermostat </h1>
-  <h1 class="temp">20</h1>
-  <div class="button_div">
-    <button class="buttonUP">Warmer</button>
-    <button class="buttonDOWN">Cooler</button>
-  </div>
-  <div class="button_div">
-    <button class="button_pwr_save_on">Power Save On</button>
-    <button class="button_pwr_save_off">Power Save Off</button>
-</div>
-<div class="button_div">
-  <button class="button_reset" type="button" name="reset">Reset</button>
-</div>
-</body>
+  <head>
+    <title> Thermostat </title>
+    <link rel="stylesheet" type="text/css" href="./main.css" />    
+  </head>
+  <body>
+    <div>
+      <h1> Thermostat </h1>
+    </div>
+    <div>
+      <h2> Current Temperature </h2>
+    </div>
+    <div class="button_div">
+      <button class="up_button"> Up </button>
+      <button class="down_button"> Down </button>
+    </div>
+    <div class="button_div">
+      <button class="on_button"> Power Saving On </button>
+      <button class="off_button"> Power Saving Off </button>
+    </div>
+    <div class="button_div">
+      <button class="reset_button"> Reset </button>
+    </div>
+  </body>
 </html>
