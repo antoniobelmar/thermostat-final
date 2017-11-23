@@ -83,7 +83,7 @@ h3 {
   color: red;
 }
 
-#weather {
+.weather {
   text-align: center;
   font-family: 'Autour One', cursive;
   font-size: 20px;
