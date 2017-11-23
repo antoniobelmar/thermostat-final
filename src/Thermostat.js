@@ -75,7 +75,7 @@ $(document).ready(function() {
   thermostat = new Thermostat();
 
   function updateTemp(){
-    $("#current_temp").html(thermostat.getCurrentTemperature());
+    $("#current_temp").html(thermostat.getCurrentTemperature()+"°C");
   };
 
   function turnOnPS(){
