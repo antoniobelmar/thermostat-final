@@ -70,3 +70,24 @@ Thermostat.prototype.energyUsage = function(){
     return 'high-usage'
   }
 }
+
+$(document).ready(function() {
+  thermostat = new Thermostat();
+
+  function updateTemp(){
+    $("#current_temp").html(thermostat.getCurrentTemperature());
+  };
+
+  updateTemp();
+
+  $("#up").click(function() {
+    thermostat.up();
+    updateTemp();
+  });
+
+  $("#down").click(function() {
+    thermostat.down();
+    updateTemp();
+  });
+
+});
