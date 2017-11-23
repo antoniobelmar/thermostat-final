@@ -78,7 +78,19 @@ $(document).ready(function() {
     $("#current_temp").html(thermostat.getCurrentTemperature());
   };
 
+  function turnOnPS(){
+    $("#power_save_status").html("Power save mode on");
+    $("#power_save_status").css({"color": "green"});
+    };
+
+  function turnOffPS(){
+    $("#power_save_status").html("Power save mode off");
+    $("#power_save_status").css({"color": "red"});
+    };
+
   updateTemp();
+
+  turnOnPS();
 
   $("#up").click(function() {
     thermostat.up();
@@ -88,6 +100,16 @@ $(document).ready(function() {
   $("#down").click(function() {
     thermostat.down();
     updateTemp();
+  });
+
+  $("#on").click(function() {
+    thermostat.turnPowerSavingModeOn();
+    turnOnPS();
+  });
+
+  $("#off").click(function() {
+    thermostat.turnPowerSavingModeOff();
+    turnOffPS();
   });
 
 });
