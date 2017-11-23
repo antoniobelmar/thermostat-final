@@ -112,4 +112,8 @@ $(document).ready(function() {
     turnOffPS();
   });
 
+  $("#reset").click(function(){
+    thermostat.reset();
+    updateTemp();
+  });
 });
