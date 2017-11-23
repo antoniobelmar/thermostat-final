@@ -18,7 +18,8 @@ h3 {
 }
 .up_button {
   background-color: #f2501a;
-  padidng: 15px;
+  font-weight: bold;
+  padding: 15px;
   width: 100px;
   color: white;
   font-size: 16px;
@@ -26,31 +27,35 @@ h3 {
 }
 .down_button {
   background-color: #42d7f4;
-  padidng: 15px;
+  font-weight: bold;
+  padding: 15px;
   width: 100px;
   color: white;
   font-size: 16px;
   border-radius: 10px;
 }
 .on_button {
+  margin-right: -2px;
   background-color: green;
-  padidng: 15px;
+  font-weight: bold;
+  padding: 15px;
   width: 100px;
   color: white;
   font-size: 16px;
-  border-radius: 10px;
 }
 .off_button {
+  margin-left: -2px;
   background-color: orange;
-  padidng: 15px;
+  font-weight: bold;
+  padding: 15px;
   width: 100px;
   color: white;
   font-size: 16px;
-  border-radius: 10px;
 }
 .reset_button {
   background-color: #8a588e;
-  padidng: 15px;
+  font-weight: bold;
+  padding: 15px;
   width: 100px;
   color: white;
   font-size: 16px;
