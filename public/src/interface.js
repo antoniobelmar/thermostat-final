@@ -4,6 +4,7 @@ $(document).ready(function() {
   function updateTemp(){
     $("#current_temp").html(thermostat.getCurrentTemperature()+"°C");
     $("#current_temp").addClass(thermostat.energyUsage());
+    $.post("/temperature", {temperature: thermostat.getCurrentTemperature()});
   };
 
   function turnOnPS(){
@@ -11,6 +12,7 @@ $(document).ready(function() {
     $("#power_save_status").css({"color": "green"});
     $("#on").css({"background-color": "grey", "color": "grey", "border-style": "inset"})
     $("#off").removeAttr("style");
+    $.post("/powersave", {ps_mode: thermostat.isPowerSavingModeOn()});
     };
 
   function turnOffPS(){
@@ -18,23 +20,36 @@ $(document).ready(function() {
     $("#power_save_status").css({"color": "red"});
     $("#off").css({"background-color": "grey", "color": "grey", "border-style": "inset"})
     $("#on").removeAttr("style");
+    $.post("/powersave", {ps_mode: thermostat.isPowerSavingModeOn()});
     };
 
-  function UpdateCity(){
+  function updateCity(city){
     var city = "London"
     $.get("http://api.openweathermap.org/data/2.5/weather?q="+city+"&units=metric&appid=4429cded58ef850105b16e73c1288175", function(weather) {
       $("#weather1").html(weather.name + ": " + weather.main.temp + "°C");
       $("#weather2").html(weather.weather[0].description.charAt(0).toUpperCase()+weather.weather[0].description.slice(1));
       $("#icon").attr("src", "http://openweathermap.org/img/w/"+weather.weather[0].icon+".png");
+      $.post("/city", {city: city});
     })
   };
+
+  $.getJSON("/temperature", function(data){
+    if(!data.temperature == "") {
+      thermostat.temperature = parseInt(data.temperature)
+      $("#current_temp").html(thermostat.getCurrentTemperature()+"°C");
+      $("#current_temp").addClass(thermostat.energyUsage());
+    }
+  });
+
+  // $.get("/city", function(data){
+  //   updateCity(data.city);
+  // });
 
   updateTemp();
 
   turnOnPS();
 
-  UpdateCity();
-
+  
 
   $("#up").click(function() {
     $("#current_temp").removeClass(thermostat.energyUsage());
@@ -69,6 +84,7 @@ $(document).ready(function() {
       $("#weather1").html(weather.name + ": " + weather.main.temp + "°C");
       $("#weather2").html(weather.weather[0].description.charAt(0).toUpperCase()+weather.weather[0].description.slice(1));
       $("#icon").attr("src", "http://openweathermap.org/img/w/"+weather.weather[0].icon+".png");
+      $.post("/city", {city: city});
     })
   });
 });
