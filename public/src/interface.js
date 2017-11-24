@@ -15,13 +15,15 @@ $(document).ready(function() {
   }
 
   function turnOnPS(){
+    thermostat.turnPowerSavingModeOn();
     $("#power_save_status").html("Power save mode on");
     $("#power_save_status").css({"color": "green"});
     $("#on").css({"background-color": "grey", "color": "grey", "border-style": "inset"})
-    $("#off").removeAttr("style");
+    $("#off").css({"background-color": "orange", "color": "white"});
     };
 
   function turnOffPS(){
+    thermostat.turnPowerSavingModeOff();
     $("#power_save_status").html("Power save mode off");
     $("#power_save_status").css({"color": "red"});
     $("#off").css({"background-color": "grey", "color": "grey", "border-style": "inset"});
@@ -39,27 +41,26 @@ $(document).ready(function() {
   };
 
  $.get("/temperature", function(data){
+    $("#current_temp").removeClass(thermostat.energyUsage());
     if(!data.temperature == "") {
-      thermostat.temperature = parseInt(data.temperature)
-      $("#current_temp").html(thermostat.getCurrentTemperature()+"°C");
-    } else {
-      updateTemp();
+      thermostat.temperature = parseInt(data.temperature);
     }
+    updateTemp();
   });
 
   $.get("/city", function(data){
      if(!data.city == "") {
-       updateCity(data.city)
+       updateCity(data.city);
      } else {
-       updateCity("London")
+       updateCity("London");
      }
    });
 
    $.get("/powersave", function(data){
-     if(data.power_save == "true") {
-       turnOnPS()
-     } else if(data.power_save == "false") {
-       turnOffPS()
+     if(data.power_save == "false") {
+       turnOffPS();
+     } else {
+       turnOnPS();
      }
    });
 
@@ -78,13 +79,11 @@ $(document).ready(function() {
   });
 
   $("#on").click(function() {
-    thermostat.turnPowerSavingModeOn();
     turnOnPS();
     sendPSInfo();
   });
 
   $("#off").click(function() {
-    thermostat.turnPowerSavingModeOff();
     turnOffPS();
     sendPSInfo();
   });

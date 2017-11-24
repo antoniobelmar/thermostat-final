@@ -86,12 +86,13 @@ h4 {
   font-size: 16px;
 }
 .off_button {
+  border-style: inset;
   margin-left: -2px;
-  background-color: orange;
+  background-color: grey;
   font-weight: bold;
   padding: 15px;
   width: 100px;
-  color: white;
+  color: grey;
   font-size: 16px;
 }
 .reset_button {
