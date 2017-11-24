@@ -4,7 +4,7 @@ body {
 
 h1 {
   text-align: center;
-  color: grey;
+  color: #b3bccc;
   font-size: 40px;
   font-family: monospace;
 }
@@ -30,6 +30,14 @@ h4 {
   margin-top: -5px;
   margin-bottom: 10px;
 }
+
+.thermostat-div {
+  background-color: #7b8699;
+  margin: auto;
+  width: 350px;
+  border-radius: 5px;
+  padding-top: 2px;
+}
 .boxed {
   width: 200px;
   height: 50px;
@@ -38,6 +46,8 @@ h4 {
   padding: 5px;
   margin: auto;
   text-align: center;
+  margin-top: -10px;
+  margin-bottom: 10px;
 }
 
 #power_save {
@@ -97,6 +107,7 @@ h4 {
 }
 
 .city-div {
+  margin-top: 15px;
   text-align: center;
 }
 
