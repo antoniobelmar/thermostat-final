@@ -4,27 +4,32 @@ $(document).ready(function() {
   function updateTemp(){
     $("#current_temp").html(thermostat.getCurrentTemperature()+"°C");
     $("#current_temp").addClass(thermostat.energyUsage());
-    $.post("/temperature", {temperature: thermostat.getCurrentTemperature()});
   };
+
+  function sendTempInfo(){
+    $.post("/temperature", {temperature: thermostat.getCurrentTemperature()});
+  }
+
+  function sendPSInfo(){
+    $.post("/powersave", {ps_mode: thermostat.isPowerSavingModeOn()});
+  }
 
   function turnOnPS(){
     $("#power_save_status").html("Power save mode on");
     $("#power_save_status").css({"color": "green"});
     $("#on").css({"background-color": "grey", "color": "grey", "border-style": "inset"})
     $("#off").removeAttr("style");
-    $.post("/powersave", {ps_mode: thermostat.isPowerSavingModeOn()});
     };
 
   function turnOffPS(){
     $("#power_save_status").html("Power save mode off");
     $("#power_save_status").css({"color": "red"});
-    $("#off").css({"background-color": "grey", "color": "grey", "border-style": "inset"})
-    $("#on").removeAttr("style");
-    $.post("/powersave", {ps_mode: thermostat.isPowerSavingModeOn()});
+    $("#off").css({"background-color": "grey", "color": "grey", "border-style": "inset"});
+    $("#on").css({"background-color": "green", "color": "white"});
     };
 
-  function updateCity(city){
-    var city = "London"
+  function updateCity(current_city){
+    var city = current_city
     $.get("http://api.openweathermap.org/data/2.5/weather?q="+city+"&units=metric&appid=4429cded58ef850105b16e73c1288175", function(weather) {
       $("#weather1").html(weather.name + ": " + weather.main.temp + "°C");
       $("#weather2").html(weather.weather[0].description.charAt(0).toUpperCase()+weather.weather[0].description.slice(1));
@@ -33,49 +38,61 @@ $(document).ready(function() {
     })
   };
 
-  $.getJSON("/temperature", function(data){
+ $.get("/temperature", function(data){
     if(!data.temperature == "") {
       thermostat.temperature = parseInt(data.temperature)
       $("#current_temp").html(thermostat.getCurrentTemperature()+"°C");
-      $("#current_temp").addClass(thermostat.energyUsage());
+    } else {
+      updateTemp();
     }
   });
 
-  // $.get("/city", function(data){
-  //   updateCity(data.city);
-  // });
+  $.get("/city", function(data){
+     if(!data.city == "") {
+       updateCity(data.city)
+     } else {
+       updateCity("London")
+     }
+   });
 
-  updateTemp();
-
-  turnOnPS();
-
-  
+   $.get("/powersave", function(data){
+     if(data.power_save == "true") {
+       turnOnPS()
+     } else if(data.power_save == "false") {
+       turnOffPS()
+     }
+   });
 
   $("#up").click(function() {
     $("#current_temp").removeClass(thermostat.energyUsage());
     thermostat.up();
     updateTemp();
+    sendTempInfo();
   });
 
   $("#down").click(function() {
     $("#current_temp").removeClass(thermostat.energyUsage());
     thermostat.down();
     updateTemp();
+    sendTempInfo();
   });
 
   $("#on").click(function() {
     thermostat.turnPowerSavingModeOn();
     turnOnPS();
+    sendPSInfo();
   });
 
   $("#off").click(function() {
     thermostat.turnPowerSavingModeOff();
     turnOffPS();
+    sendPSInfo();
   });
 
   $("#reset").click(function(){
     thermostat.reset();
     updateTemp();
+    sendTempInfo();
   });
 
   $("#city").on("change", function(){

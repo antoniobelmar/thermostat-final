@@ -19,16 +19,23 @@ class Thermostat_App < Sinatra::Base
   end
 
   post "/powersave" do
-    session[:power_save] = params[:ps_mode]  
+    p params
+    session[:power_save] = params[:ps_mode]
+  end
+
+  get "/powersave" do
+    content_type :json
+    {power_save: session[:power_save]}.to_json
   end
 
   post "/city" do
+    p params
     session[:city] = params[:city]
   end
 
   get "/city" do
     content_type :json
-
+    {city: session[:city]}.to_json
   end
 
   run! if app_file == $0
