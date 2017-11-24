@@ -4,7 +4,7 @@ body {
 
 h1 {
   text-align: center;
-  color: #b3bccc;
+  color: #4b4e54;
   font-size: 40px;
   font-family: monospace;
 }
@@ -32,11 +32,13 @@ h4 {
 }
 
 .thermostat-div {
-  background-color: #7b8699;
+  background-color: #b3bccc;
   margin: auto;
   width: 350px;
-  border-radius: 5px;
+  border-radius: 10px;
   padding-top: 2px;
+  box-shadow: 5px 5px 5px #4a4d54;
+  border-style: outset;
 }
 .boxed {
   width: 200px;
@@ -107,7 +109,7 @@ h4 {
 }
 
 .city-div {
-  margin-top: 15px;
+  margin-top: 20px;
   text-align: center;
 }
 
